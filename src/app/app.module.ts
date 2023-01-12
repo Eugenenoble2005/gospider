@@ -12,6 +12,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { FormsModule } from "@angular/forms"
 import { ElectronService } from 'ngx-electron';
 import { MatProgressBarModule } from "@angular/material/progress-bar"
+import { MatTooltipModule } from "@angular/material/tooltip"
 import { MatTableModule } from "@angular/material/table"
 import { MatSlideToggleModule } from "@angular/material/slide-toggle"
 //@ts-ignore
@@ -26,6 +27,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle"
     MatFormFieldModule,
     MatTableModule,
     MatSlideToggleModule,
+    MatTooltipModule,
     MatProgressBarModule,
     NgScrollbarModule,
     MatInputModule,

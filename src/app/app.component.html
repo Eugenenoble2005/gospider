@@ -1,7 +1,7 @@
 <mat-toolbar> 
   <mat-progress-bar mode="indeterminate" *ngIf="scalping"></mat-progress-bar>
-    <span>Gospider Anime Scraper</span>
-    <span style="justify-content: right;display: flex;"><mat-slide-toggle color="accent">Auto Download</mat-slide-toggle></span>
+    <span style="margin-top:10px">Gospider Anime Scraper</span>
+    <span style="justify-content: right;display: flex;"><mat-slide-toggle [checked]="auto_download" (toggleChange)="auto_download = !auto_download" matTooltip="Automatically begin to download episodes as they are crawled" color="accent">Auto Download</mat-slide-toggle></span>
 </mat-toolbar>
 <mat-toolbar style="height:120px"> 
       <form class="example-form" #form = "ngForm" (ngSubmit) = "deployScalper(form.value)">
@@ -29,7 +29,7 @@
         </mat-form-field> 
         &nbsp;
         &nbsp;
-        <button mat-flat-button color="primary">Find Links</button>
+        <button mat-flat-button color="primary" [disabled]="scalping"> {{ scalping ? "Scalping...This might take a while. Restart application to stop" : "Find Links" }} </button>
       </form>
 </mat-toolbar>
 <table mat-table [dataSource]="episodes" class="mat-elevation-z8" #table *ngIf="episodes.length != 0" style = "background: transparent;">
@@ -53,6 +53,6 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<!-- <main id = "main" style="background:#EFF5F5;height:100%">
+<main id = "main" style="background:#EFF5F5;height:100%">
 
-</main> -->
+</main>

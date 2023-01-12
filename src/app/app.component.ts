@@ -1,7 +1,7 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { ElectronService } from "ngx-electron"
 import { MatTable } from '@angular/material/table';
-
+import { MatSlideToggle } from '@angular/material/slide-toggle';
 //@ts-ignore
 @Component({
   selector: 'app-root',
@@ -10,15 +10,18 @@ import { MatTable } from '@angular/material/table';
 })
 
 export class AppComponent implements OnInit{
+  public auto_download:boolean = true
   ngOnInit(): void {
-    
+  
   }
   public episodes:any = []
   @ViewChild(MatTable) public table!: MatTable<any>
+
   public scalping = false
   displayedColumns: string[] = ['episode', 'link'];
   constructor(public electronService:ElectronService){}
   deployScalper(data:any){
+
       this.scalping = true
       let self = this
      let url = data.url
@@ -35,10 +38,13 @@ export class AppComponent implements OnInit{
       }
           data.url = "https://v2.gogoanime.co.in/videos/"+episode_string_array.join("-")+"-"+episode
           self.electronService.ipcRenderer.invoke("spider",data).then((result:any)=>{
-            console.log(result)
-            self.episodes.push({"episode":episode,"link":result})
             if(result){
+              self.episodes.push({"episode":episode,"link":result})
               getLink(episode+1)
+              //download automatically is needed
+              if(self.auto_download){
+                self.openInChrome(result)
+              }
             }
             self.table.renderRows()
           },(error:any)=>{

@@ -29,4 +29,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
-@import "~@angular/material/prebuilt-themes/pink-bluegrey.css"
+
+@import "~@angular/material/prebuilt-themes/purple-green.css";
+.mat-tooltip{
+  font-size: 15px !important;
+}
