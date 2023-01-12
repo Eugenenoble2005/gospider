@@ -1,0 +1,301 @@
+diff --git a/node_modules/ngx-electron/__ivy_ngcc__/fesm2015/ngx-electron.js b/node_modules/ngx-electron/__ivy_ngcc__/fesm2015/ngx-electron.js
+new file mode 100644
+index 0000000..7aa994b
+--- /dev/null
++++ b/node_modules/ngx-electron/__ivy_ngcc__/fesm2015/ngx-electron.js
+@@ -0,0 +1,177 @@
++import { Injectable, NgModule } from '@angular/core';
++
++/**
++ * @fileoverview added by tsickle
++ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
++ */
++import * as ɵngcc0 from '@angular/core';
++class ElectronService {
++    /**
++     * @private
++     * @return {?}
++     */
++    get electron() {
++        if (!this._electron) {
++            if (window && window.require) {
++                this._electron = window.require('electron');
++                return this._electron;
++            }
++            return null;
++        }
++        return this._electron;
++    }
++    /**
++     * determines if SPA is running in Electron
++     * @return {?}
++     */
++    get isElectronApp() {
++        return !!window.navigator.userAgent.match(/Electron/);
++    }
++    /**
++     * @return {?}
++     */
++    get isMacOS() {
++        return this.isElectronApp && process.platform === 'darwin';
++    }
++    /**
++     * @return {?}
++     */
++    get isWindows() {
++        return this.isElectronApp && process.platform === 'win32';
++    }
++    /**
++     * @return {?}
++     */
++    get isLinux() {
++        return this.isElectronApp && process.platform === 'linux';
++    }
++    /**
++     * @return {?}
++     */
++    get isX86() {
++        return this.isElectronApp && process.arch === 'ia32';
++    }
++    /**
++     * @return {?}
++     */
++    get isX64() {
++        return this.isElectronApp && process.arch === 'x64';
++    }
++    /**
++     * @return {?}
++     */
++    get isArm() {
++        return this.isElectronApp && process.arch === 'arm';
++    }
++    /**
++     * @return {?}
++     */
++    get desktopCapturer() {
++        return this.electron ? this.electron.desktopCapturer : null;
++    }
++    /**
++     * @return {?}
++     */
++    get ipcRenderer() {
++        return this.electron ? this.electron.ipcRenderer : null;
++    }
++    /**
++     * @return {?}
++     */
++    get remote() {
++        return this.electron ? this.electron.remote : null;
++    }
++    /**
++     * @return {?}
++     */
++    get webFrame() {
++        return this.electron ? this.electron.webFrame : null;
++    }
++    /**
++     * @return {?}
++     */
++    get clipboard() {
++        return this.electron ? this.electron.clipboard : null;
++    }
++    /**
++     * @return {?}
++     */
++    get crashReporter() {
++        return this.electron ? this.electron.crashReporter : null;
++    }
++    /**
++     * @return {?}
++     */
++    get process() {
++        return this.remote ? this.remote.process : null;
++    }
++    /**
++     * @return {?}
++     */
++    get nativeImage() {
++        return this.electron ? this.electron.nativeImage : null;
++    }
++    /**
++     * @return {?}
++     */
++    get screen() {
++        return this.electron ? this.remote.screen : null;
++    }
++    /**
++     * @return {?}
++     */
++    get shell() {
++        return this.electron ? this.electron.shell : null;
++    }
++}
++if (false) {
++    /**
++     * @type {?}
++     * @private
++     */
++    ElectronService.prototype._electron;
++}
++
++/**
++ * @fileoverview added by tsickle
++ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
++ */
++class ElectronServiceRef extends ElectronService {
++    constructor() {
++        super();
++    }
++}
++ElectronServiceRef.ɵfac = function ElectronServiceRef_Factory(t) { return new (t || ElectronServiceRef)(); };
++ElectronServiceRef.ɵprov = /*@__PURE__*/ ɵngcc0.ɵɵdefineInjectable({ token: ElectronServiceRef, factory: ElectronServiceRef.ɵfac });
++/** @nocollapse */
++ElectronServiceRef.ctorParameters = () => [];
++(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵngcc0.ɵsetClassMetadata(ElectronServiceRef, [{
++        type: Injectable
++    }], function () { return []; }, null); })();
++
++/**
++ * @fileoverview added by tsickle
++ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
++ */
++class NgxElectronModule {
++}
++NgxElectronModule.ɵfac = function NgxElectronModule_Factory(t) { return new (t || NgxElectronModule)(); };
++NgxElectronModule.ɵmod = /*@__PURE__*/ ɵngcc0.ɵɵdefineNgModule({ type: NgxElectronModule });
++NgxElectronModule.ɵinj = /*@__PURE__*/ ɵngcc0.ɵɵdefineInjector({ providers: [{ provide: ElectronService, useClass: ElectronServiceRef }] });
++(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵngcc0.ɵsetClassMetadata(NgxElectronModule, [{
++        type: NgModule,
++        args: [{
++                declarations: [],
++                exports: [],
++                providers: [{ provide: ElectronService, useClass: ElectronServiceRef }]
++            }]
++    }], null, null); })();
++
++/**
++ * @fileoverview added by tsickle
++ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
++ */
++
++export { ElectronService, ElectronServiceRef, NgxElectronModule };
++
++//# sourceMappingURL=ngx-electron.js.map
+\ No newline at end of file
+diff --git a/node_modules/ngx-electron/__ivy_ngcc__/fesm2015/ngx-electron.js.map b/node_modules/ngx-electron/__ivy_ngcc__/fesm2015/ngx-electron.js.map
+new file mode 100644
+index 0000000..3d83641
+--- /dev/null
++++ b/node_modules/ngx-electron/__ivy_ngcc__/fesm2015/ngx-electron.js.map
+@@ -0,0 +1 @@
++{"version":3,"file":"ngx-electron.js","sources":["ngx-electron/lib/electron.service.ts","ngx-electron/lib/electron.service.ref.ts","ngx-electron/public_api.ts"],"names":[],"mappings":"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","sourcesContent":["import * as Electron from 'electron';\nimport { ElectronWindow } from './typings/electron.window';\n\ndeclare let window: ElectronWindow;\n\nexport class ElectronService {\n    private _electron: Electron.RendererInterface;\n\n    private get electron(): Electron.RendererInterface {\n        if (!this._electron) {\n            if (window && window.require) {\n                this._electron = window.require('electron');\n                return this._electron;\n            }\n            return null;\n        }\n        return this._electron;\n    }\n\n    /**\n     * determines if SPA is running in Electron\n     */\n    public get isElectronApp(): boolean {\n        return !!window.navigator.userAgent.match(/Electron/);\n    }\n\n    public get isMacOS(): boolean {\n        return this.isElectronApp && process.platform === 'darwin';\n    }\n\n    public get isWindows(): boolean {\n        return this.isElectronApp && process.platform === 'win32';\n    }\n\n    public get isLinux(): boolean {\n        return this.isElectronApp && process.platform === 'linux';\n    }\n\n    public get isX86(): boolean {\n        return this.isElectronApp && process.arch === 'ia32';\n    }\n\n    public get isX64(): boolean {\n        return this.isElectronApp && process.arch === 'x64';\n    }\n\n    public get isArm(): boolean {\n        return this.isElectronApp && process.arch === 'arm';\n    }\n\n    public get desktopCapturer(): Electron.DesktopCapturer {\n        return this.electron ? this.electron.desktopCapturer : null;\n    }\n\n    public get ipcRenderer(): Electron.IpcRenderer {\n        return this.electron ? this.electron.ipcRenderer : null;\n    }\n\n    public get remote(): Electron.Remote {\n        return this.electron ? this.electron.remote : null;\n    }\n\n    public get webFrame(): Electron.WebFrame {\n        return this.electron ? this.electron.webFrame : null;\n    }\n\n    public get clipboard(): Electron.Clipboard {\n        return this.electron ? this.electron.clipboard : null;\n    }\n\n    public get crashReporter(): Electron.CrashReporter {\n        return this.electron ? this.electron.crashReporter : null;\n    }\n\n    public get process(): any {\n        return this.remote ? this.remote.process : null;\n    }\n\n    public get nativeImage(): typeof Electron.nativeImage {\n        return this.electron ? this.electron.nativeImage : null;\n    }\n\n    public get screen(): Electron.Screen {\n        return this.electron ? this.remote.screen : null;\n    }\n\n    public get shell(): Electron.Shell {\n        return this.electron ? this.electron.shell : null;\n    }\n}\n","import { ElectronService } from './electron.service';\nimport { Injectable } from '@angular/core';\n\n@Injectable()\nexport class ElectronServiceRef extends ElectronService {\n\n    constructor() {\n        super();\n    }\n}\n","import { NgModule } from '@angular/core';\nimport { ElectronService } from './lib/electron.service';\nimport { ElectronServiceRef } from './lib/electron.service.ref';\n\nexport * from './lib/electron.service';\nexport * from './lib/electron.service.ref';\n\n@NgModule({\n    declarations: [],\n    exports: [],\n    providers: [{ provide: ElectronService, useClass: ElectronServiceRef }]\n})\nexport class NgxElectronModule {\n\n}\n"]}
+\ No newline at end of file
+diff --git a/node_modules/ngx-electron/lib/electron.service.d.ts b/node_modules/ngx-electron/lib/electron.service.d.ts
+index 15841b1..47149dd 100644
+--- a/node_modules/ngx-electron/lib/electron.service.d.ts
++++ b/node_modules/ngx-electron/lib/electron.service.d.ts
+@@ -14,7 +14,7 @@ export declare class ElectronService {
+     readonly isArm: boolean;
+     readonly desktopCapturer: Electron.DesktopCapturer;
+     readonly ipcRenderer: Electron.IpcRenderer;
+-    readonly remote: Electron.Remote;
++   // readonly remote: Electron.Remote;
+     readonly webFrame: Electron.WebFrame;
+     readonly clipboard: Electron.Clipboard;
+     readonly crashReporter: Electron.CrashReporter;
+diff --git a/node_modules/ngx-electron/lib/electron.service.ref.d.ts b/node_modules/ngx-electron/lib/electron.service.ref.d.ts
+index cc882f8..cd6abd0 100644
+--- a/node_modules/ngx-electron/lib/electron.service.ref.d.ts
++++ b/node_modules/ngx-electron/lib/electron.service.ref.d.ts
+@@ -1,4 +1,9 @@
+ import { ElectronService } from './electron.service';
++import * as ɵngcc0 from '@angular/core';
+ export declare class ElectronServiceRef extends ElectronService {
+     constructor();
++    static ɵfac: ɵngcc0.ɵɵFactoryDeclaration<ElectronServiceRef, never>;
++    static ɵprov: ɵngcc0.ɵɵInjectableDeclaration<ElectronServiceRef>;
+ }
++
++//# sourceMappingURL=electron.service.ref.d.ts.map
+\ No newline at end of file
+diff --git a/node_modules/ngx-electron/lib/electron.service.ref.d.ts.__ivy_ngcc_bak b/node_modules/ngx-electron/lib/electron.service.ref.d.ts.__ivy_ngcc_bak
+new file mode 100644
+index 0000000..cc882f8
+--- /dev/null
++++ b/node_modules/ngx-electron/lib/electron.service.ref.d.ts.__ivy_ngcc_bak
+@@ -0,0 +1,4 @@
++import { ElectronService } from './electron.service';
++export declare class ElectronServiceRef extends ElectronService {
++    constructor();
++}
+diff --git a/node_modules/ngx-electron/lib/electron.service.ref.d.ts.map b/node_modules/ngx-electron/lib/electron.service.ref.d.ts.map
+new file mode 100644
+index 0000000..2ab5a8b
+--- /dev/null
++++ b/node_modules/ngx-electron/lib/electron.service.ref.d.ts.map
+@@ -0,0 +1 @@
++{"version":3,"file":"electron.service.ref.d.ts","sources":["electron.service.ref.d.ts"],"names":[],"mappings":"AAAA;;AACA;AACA;;;AACA","sourcesContent":["import { ElectronService } from './electron.service';\nexport declare class ElectronServiceRef extends ElectronService {\n    constructor();\n}\n"]}
+\ No newline at end of file
+diff --git a/node_modules/ngx-electron/ngx-electron.d.ts b/node_modules/ngx-electron/ngx-electron.d.ts
+index 7417cc8..f1c562f 100644
+--- a/node_modules/ngx-electron/ngx-electron.d.ts
++++ b/node_modules/ngx-electron/ngx-electron.d.ts
+@@ -2,3 +2,5 @@
+  * Generated bundle index. Do not edit.
+  */
+ export * from './public_api';
++
++//# sourceMappingURL=ngx-electron.d.ts.map
+\ No newline at end of file
+diff --git a/node_modules/ngx-electron/ngx-electron.d.ts.__ivy_ngcc_bak b/node_modules/ngx-electron/ngx-electron.d.ts.__ivy_ngcc_bak
+new file mode 100644
+index 0000000..7417cc8
+--- /dev/null
++++ b/node_modules/ngx-electron/ngx-electron.d.ts.__ivy_ngcc_bak
+@@ -0,0 +1,4 @@
++/**
++ * Generated bundle index. Do not edit.
++ */
++export * from './public_api';
+diff --git a/node_modules/ngx-electron/ngx-electron.d.ts.map b/node_modules/ngx-electron/ngx-electron.d.ts.map
+new file mode 100644
+index 0000000..a5f45db
+--- /dev/null
++++ b/node_modules/ngx-electron/ngx-electron.d.ts.map
+@@ -0,0 +1 @@
++{"version":3,"file":"ngx-electron.d.ts","sources":["ngx-electron.d.ts"],"names":[],"mappings":"AAAA;AACA;AACA;AACA","sourcesContent":["/**\n * Generated bundle index. Do not edit.\n */\nexport * from './public_api';\n"]}
+\ No newline at end of file
+diff --git a/node_modules/ngx-electron/public_api.d.ts b/node_modules/ngx-electron/public_api.d.ts
+index cc79043..40328fe 100644
+--- a/node_modules/ngx-electron/public_api.d.ts
++++ b/node_modules/ngx-electron/public_api.d.ts
+@@ -1,4 +1,10 @@
++import * as ɵngcc0 from '@angular/core';
+ export * from './lib/electron.service';
+ export * from './lib/electron.service.ref';
+ export declare class NgxElectronModule {
++    static ɵfac: ɵngcc0.ɵɵFactoryDeclaration<NgxElectronModule, never>;
++    static ɵmod: ɵngcc0.ɵɵNgModuleDeclaration<NgxElectronModule, never, never, never>;
++    static ɵinj: ɵngcc0.ɵɵInjectorDeclaration<NgxElectronModule>;
+ }
++
++//# sourceMappingURL=public_api.d.ts.map
+\ No newline at end of file
+diff --git a/node_modules/ngx-electron/public_api.d.ts.__ivy_ngcc_bak b/node_modules/ngx-electron/public_api.d.ts.__ivy_ngcc_bak
+new file mode 100644
+index 0000000..cc79043
+--- /dev/null
++++ b/node_modules/ngx-electron/public_api.d.ts.__ivy_ngcc_bak
+@@ -0,0 +1,4 @@
++export * from './lib/electron.service';
++export * from './lib/electron.service.ref';
++export declare class NgxElectronModule {
++}
+diff --git a/node_modules/ngx-electron/public_api.d.ts.map b/node_modules/ngx-electron/public_api.d.ts.map
+new file mode 100644
+index 0000000..0f2e425
+--- /dev/null
++++ b/node_modules/ngx-electron/public_api.d.ts.map
+@@ -0,0 +1 @@
++{"version":3,"file":"public_api.d.ts","sources":["public_api.d.ts"],"names":[],"mappings":";AAAA;AACA;AACA;;;;AACA","sourcesContent":["export * from './lib/electron.service';\nexport * from './lib/electron.service.ref';\nexport declare class NgxElectronModule {\n}\n"]}
+\ No newline at end of file
