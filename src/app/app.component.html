@@ -7,7 +7,7 @@
       <form class="example-form" #form = "ngForm" (ngSubmit) = "deployScalper(form.value)">
         <mat-form-field class="example-full-width" style="width:350px">
           <mat-label>Link</mat-label>
-          <input matInput placeholder="v2.gogoanime.co.in link" name="url" ngModel>
+          <input matInput required placeholder="v2.gogoanime.co.in link" name="url" ngModel>
         </mat-form-field>
         &nbsp;
         <mat-form-field appearance="fill">
@@ -21,11 +21,11 @@
         </mat-form-field> &nbsp;
         <mat-form-field class="example-full-width" style="width:100px">
           <mat-label>Start Episode</mat-label>
-          <input matInput type="number" placeholder="Start Episode"  name = "start_episode" ngModel>
+          <input matInput type="number" required placeholder="Start Episode"  name = "start_episode" ngModel>
         </mat-form-field> &nbsp;
         <mat-form-field class="example-full-width" style="width:100px">
           <mat-label>End Episode</mat-label>
-          <input matInput placeholder="End Episode" name="end_episode" ngModel>
+          <input matInput placeholder="End Episode" required type="mumber" name="end_episode" ngModel>
         </mat-form-field> 
         &nbsp;
         &nbsp;
@@ -46,7 +46,7 @@
   <!-- Name Column -->
   <ng-container matColumnDef="link">
     <th mat-header-cell *matHeaderCellDef> Download </th>
-    <td mat-cell *matCellDef="let element"> <button (click)="openInChrome(element.link)" mat-flat-button color="accent" >Download In Chrome</button> </td>
+    <td mat-cell *matCellDef="let element"> <button (click)="openInChrome(element.link)" mat-flat-button color="accent" [disabled]="element.link == 'failed'" >{{ element.link == 'Failed' ? "Failed" : "Download In Chrome"}}</button> </td>
   </ng-container>
 
 

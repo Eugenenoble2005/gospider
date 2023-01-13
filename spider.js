@@ -34,5 +34,6 @@ async function main(url,quality){
      
 
 ipcMain.handle("spider",async (event,data)=>{
+    //do nothing eith error
      return main(data.url,data.quality)
 })

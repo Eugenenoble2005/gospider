@@ -39,6 +39,7 @@ export class AppComponent implements OnInit{
           data.url = "https://v2.gogoanime.co.in/videos/"+episode_string_array.join("-")+"-"+episode
           self.electronService.ipcRenderer.invoke("spider",data).then((result:any)=>{
             if(result){
+              console.log(result)
               self.episodes.push({"episode":episode,"link":result})
               getLink(episode+1)
               //download automatically is needed
@@ -49,6 +50,8 @@ export class AppComponent implements OnInit{
             self.table.renderRows()
           },(error:any)=>{
               //move to next episode and report failed if anything goes wrong
+              self.episodes.push({"episode":episode,"link":"Failed"})
+              self.table.renderRows()
               getLink(episode+1)
 
           })
