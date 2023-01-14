@@ -25,10 +25,13 @@ async function main(url,quality){
       );
         let download_body = await response.text()
         const $ = cheerio.load(download_body)
+        if($("a").length == 0){
+           throw new Error("Captcha block detected");
+        }
         let download_link = $("a").map((i,el)=>{
             return el
         })
-        await page.close()
+        await browser.close()
         return $(download_link[quality]).attr("href")
         }
      

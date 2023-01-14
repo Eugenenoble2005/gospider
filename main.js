@@ -7,8 +7,9 @@ const {BrowserWindow} = require('electron-acrylic-window')
 
     function createWindow () {
       mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
+        // width: 800,
+        // height: 600,
+        autoHideMenuBar: true ,
         vibrancy:{
           effect:"acrylic",
           theme:"#12345678"
@@ -18,17 +19,15 @@ const {BrowserWindow} = require('electron-acrylic-window')
           contextIsolation:false,
         }
       })
-
+      mainWindow.maximize();
       mainWindow.loadURL(
         // url.format({
-        //   pathname: path.join(__dirname, `/dist/electron-app/index.html`),
+        //   pathname: path.join(__dirname, `/dist/gospider/index.html`),
         //   protocol: "file:",
         //   slashes: true
         // })
-        "http://localhost:4200"
+         "http://localhost:4200"
       );
-      // Open the DevTools.
-      mainWindow.webContents.openDevTools()
       //open download links externally
       mainWindow.on('closed', function () {
         mainWindow = null
