@@ -64,7 +64,7 @@ export class AppComponent implements OnInit{
      getLink(start_episode)
   }
   retryCrawl(episode:number,$event:any){
-    $event.target.disabled = true
+    $event.target.disabled = true;
     $event.target.innerHTML = "Retrying"
     let url = (<HTMLInputElement>document.getElementById("url")).value;
     let episode_string_array = (url.split("/")[url.split("/").length-1]).split("-")
