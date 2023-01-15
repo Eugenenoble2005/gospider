@@ -33,8 +33,9 @@ export class AppComponent implements OnInit{
      episode_string_array.pop()
      //use recursion to scalp for individual links
      function getLink(episode:number){
-      console.log(self.episodes)
-      if(episode == end_episode){
+      console.log(episode)
+      console.log(end_episode)
+      if(episode-1 == end_episode){
         self.scalping = false
         return
       }
@@ -76,7 +77,7 @@ export class AppComponent implements OnInit{
     this.electronService.ipcRenderer.invoke("spider",data).then((result:any)=>{
       //try to crawl episode again and display data on the table
       if(result){
-        let data = [{"episode":episode,"link":result}]
+        let data = [{"episode":episode,"link":result,"driver":this.driver}]
         let newData = this.episodes.map((obj: { episode: number,"link":any })=>data.find(o=>o.episode === obj.episode) || obj);
         this.episodes = newData
         try{
@@ -85,7 +86,7 @@ export class AppComponent implements OnInit{
         catch{}
       }
     },(error:any)=>{
-      let data = [{"episode":episode,"link":"failed"}]
+      let data = [{"episode":episode,"link":"failed","driver":this.driver}]
       let newData = this.episodes.map((obj: { episode: number,"link":any })=>data.find(o=>o.episode === obj.episode) || obj);
       this.episodes = newData
       try{

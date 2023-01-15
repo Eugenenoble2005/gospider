@@ -32,6 +32,8 @@
     "ngx-scrollbar": "9.0.2",
     "patch-package": "^6.5.1",
     "puppeteer": "^19.5.0",
+    "puppeteer-extra": "^3.3.4",
+    "puppeteer-extra-plugin-stealth": "^2.11.1",
     "rxjs": "~7.4.0",
     "ts-node": "^10.9.1",
     "tslib": "^2.3.0",

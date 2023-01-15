@@ -1,8 +1,11 @@
 
-const puppeteer = require("puppeteer")
 const chromePaths = require('chrome-paths');
-const {app,ipcMain} = require("electron")
+const puppeteer = require('puppeteer-extra')
 
+// add stealth plugin and use defaults (all evasion techniques)
+const StealthPlugin = require('puppeteer-extra-plugin-stealth')
+const {app,ipcMain} = require("electron")
+puppeteer.use(StealthPlugin())
 const cheerio = require("cheerio")
 async function main(url,quality,driver){
     console.log("loading...")
