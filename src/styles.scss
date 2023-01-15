@@ -6,6 +6,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     min-width: 150px;
     max-width: 500px;
     width: 100%;
+    margin-top: 40px;
   }
   
   .example-full-width {
@@ -33,4 +34,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @import "~@angular/material/prebuilt-themes/purple-green.css";
 .mat-tooltip{
   font-size: 15px !important;
+}
+ .driver .mat-form-field-appearance-fill .mat-form-field-flex{
+  padding: 0px !important;
+}
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: white !important;
 }

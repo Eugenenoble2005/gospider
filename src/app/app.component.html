@@ -1,7 +1,15 @@
 <mat-toolbar> 
   <mat-progress-bar mode="indeterminate" *ngIf="scalping"></mat-progress-bar>
     <span style="margin-top:10px">Gospider Anime Scraper</span>
-    <span style="justify-content: right;display: flex;"><mat-slide-toggle [checked]="auto_download" (toggleChange)="auto_download = !auto_download" matTooltip="Automatically begin to download episodes as they are crawled" color="accent">Auto Download</mat-slide-toggle></span>
+    <span style="justify-content: right;display: flex;" class = "driver">
+      <mat-form-field  appearance="fill" matTooltip="Select browser to crawl with, both must be installed to their default locations on your PC. If a driver keeps failing, switch to the other">
+        <mat-label>Driver</mat-label>
+        <mat-select matNativeControl required [(ngModel)] = "driver">
+          <mat-option value="chrome">Chrome</mat-option>
+          <mat-option value="edge">Edge</mat-option>
+        </mat-select>
+      </mat-form-field>&nbsp;
+      <mat-slide-toggle [checked]="auto_download" (toggleChange)="auto_download = !auto_download" matTooltip="Automatically begin to download episodes as they are crawled" color="accent">Auto Download</mat-slide-toggle></span>
 </mat-toolbar>
 <mat-toolbar style="height:120px"> 
       <form class="example-form" #form = "ngForm" (ngSubmit) = "deployScalper(form.value)">
@@ -12,12 +20,12 @@
         &nbsp;
         <mat-form-field appearance="fill">
           <mat-label>Quality</mat-label>
-          <select matNativeControl required name="quality" ngModel>
-            <option value="0">360p</option>
-            <option value="1">480p</option>
-            <option value="2">720p</option>
-            <option value="3">1080p</option>
-          </select>
+          <mat-select matNativeControl required name="quality" ngModel>
+            <mat-option value="0">360p</mat-option>
+            <mat-option value="1">480p</mat-option>
+            <mat-option value="2">720p</mat-option>
+            <mat-option value="3">1080p</mat-option>
+          </mat-select>
         </mat-form-field> &nbsp;
         <mat-form-field class="example-full-width" style="width:100px">
           <mat-label>Start Episode</mat-label>

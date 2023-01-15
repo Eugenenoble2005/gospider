@@ -12,7 +12,7 @@
 
 # profiling files
 chrome-profiler-events*.json
-
+/gospider-win32-x64
 # IDEs and editors
 /.idea
 .project
