@@ -26,15 +26,13 @@ export class AppComponent implements OnInit{
       this.scalping = true
       let self = this
      let url = data.url
-     data.driver = this.driver
      let end_episode = data.end_episode
      let start_episode = data.start_episode
      let episode_string_array = (url.split("/")[url.split("/").length-1]).split("-")
      episode_string_array.pop()
      //use recursion to scalp for individual links
      function getLink(episode:number){
-      console.log(episode)
-      console.log(end_episode)
+      data.driver = self.driver
       if(episode-1 == end_episode){
         self.scalping = false
         return
@@ -62,6 +60,7 @@ export class AppComponent implements OnInit{
               self.table.renderRows()
               }
               catch{}
+              console.log(JSON.stringify(error))
           })
      }
      getLink(start_episode)
@@ -73,11 +72,12 @@ export class AppComponent implements OnInit{
     let episode_string_array = (url.split("/")[url.split("/").length-1]).split("-")
     episode_string_array.pop()
     url = "https://v2.gogoanime.co.in/videos/"+episode_string_array.join("-")+"-"+episode
-    let data = {url:url}
+    let data = {"url":url,"driver":this.driver,"quality":2}
     this.electronService.ipcRenderer.invoke("spider",data).then((result:any)=>{
+      console.log("retry-reesult",result)
       //try to crawl episode again and display data on the table
       if(result){
-        let data = [{"episode":episode,"link":result,"driver":this.driver}]
+        let data = [{"episode":episode,"link":result}]
         let newData = this.episodes.map((obj: { episode: number,"link":any })=>data.find(o=>o.episode === obj.episode) || obj);
         this.episodes = newData
         try{

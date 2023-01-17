@@ -32,7 +32,7 @@ async function main(url,quality,driver){
         let download_body = await response.text()
         const $ = cheerio.load(download_body)
         if($("a").length == 0){
-           throw new Error("Captcha block detected");
+           throw {"error":"Captcha Block Detected",link:link};
         }
         let download_link = $("a").map((i,el)=>{
             return el

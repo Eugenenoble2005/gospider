@@ -18,17 +18,17 @@ const {BrowserWindow} = require('electron-acrylic-window')
         webPreferences: {
           nodeIntegration: true,
           contextIsolation:false,
-          devTools:false
+        //  devTools:false
         }
       })
       mainWindow.maximize();
       mainWindow.loadURL(
-        url.format({
-          pathname: path.join(__dirname, `/dist/gospider/index.html`),
-          protocol: "file:",
-          slashes: true
-        }),
-        // "http://localhost:4200"
+        // url.format({
+        //   pathname: path.join(__dirname, `/dist/gospider/index.html`),
+        //   protocol: "file:",
+        //   slashes: true
+        // }),
+         "http://localhost:4200"
       ); 
       //open download links externally
       mainWindow.on('closed', function () {
