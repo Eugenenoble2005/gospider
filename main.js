@@ -10,6 +10,7 @@ const {BrowserWindow} = require('electron-acrylic-window')
         // width: 800,
         // height: 600,
         autoHideMenuBar: true ,
+        icon:path.join(__dirname, `/gogoanime.png`),
         vibrancy:{
           effect:"acrylic",
           theme:"#12345678"
@@ -17,17 +18,18 @@ const {BrowserWindow} = require('electron-acrylic-window')
         webPreferences: {
           nodeIntegration: true,
           contextIsolation:false,
+          devTools:false
         }
       })
       mainWindow.maximize();
       mainWindow.loadURL(
-        // url.format({
-        //   pathname: path.join(__dirname, `/dist/gospider/index.html`),
-        //   protocol: "file:",
-        //   slashes: true
-        // }),
-        "http://localhost:4200"
-      );
+        url.format({
+          pathname: path.join(__dirname, `/dist/gospider/index.html`),
+          protocol: "file:",
+          slashes: true
+        }),
+        // "http://localhost:4200"
+      ); 
       //open download links externally
       mainWindow.on('closed', function () {
         mainWindow = null
