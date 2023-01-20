@@ -40,27 +40,27 @@ export class AppComponent implements OnInit{
           data.url = "https://v2.gogoanime.co.in/videos/"+episode_string_array.join("-")+"-"+episode
           self.electronService.ipcRenderer.invoke("spider",data).then((result:any)=>{
             if(result){
-              console.log(result)
               getLink(episode+1)
-              self.episodes.push({"episode":episode,"link":result})
+              result.episode = episode
+              self.episodes.push(result)
               //download automatically is needed
               if(self.auto_download){
                 self.openInChrome(result)
               }
             }
+            //idk this thing throws errors for some reason
             try{
             self.table.renderRows()
             }
             catch{}
           },(error:any)=>{
               //move to next episode and report failed if anything goes wrong
-              self.episodes.push({"episode":episode,"link":"failed"})
+              self.episodes.push({"episode":episode,"status":false,"error":"any"})
               getLink(episode+1)
               try{
               self.table.renderRows()
               }
               catch{}
-              console.log(JSON.stringify(error))
           })
      }
      getLink(start_episode)
@@ -77,8 +77,9 @@ export class AppComponent implements OnInit{
       console.log("retry-reesult",result)
       //try to crawl episode again and display data on the table
       if(result){
-        let data = [{"episode":episode,"link":result}]
-        let newData = this.episodes.map((obj: { episode: number,"link":any })=>data.find(o=>o.episode === obj.episode) || obj);
+        result.episode = episode
+        let data = [result]
+        let newData = this.episodes.map((obj: { episode: number})=>data.find(o=>o.episode === obj.episode) || obj);
         this.episodes = newData
         try{
           this.table.renderRows()
@@ -86,12 +87,12 @@ export class AppComponent implements OnInit{
         catch{}
       }
     },(error:any)=>{
-      let data = [{"episode":episode,"link":"failed","driver":this.driver}]
-      let newData = this.episodes.map((obj: { episode: number,"link":any })=>data.find(o=>o.episode === obj.episode) || obj);
-      this.episodes = newData
-      try{
-        this.table.renderRows()
-      }
+      let data = [{"episode":episode,"status":false,"error":"any"}]
+        let newData = this.episodes.map((obj: { episode: number})=>data.find(o=>o.episode === obj.episode) || obj);
+        this.episodes = newData
+        try{
+          this.table.renderRows() 
+        }
       catch{}
     })
 

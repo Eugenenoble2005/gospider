@@ -32,13 +32,13 @@ async function main(url,quality,driver){
         let download_body = await response.text()
         const $ = cheerio.load(download_body)
         if($("a").length == 0){
-           throw {"error":"Captcha Block Detected",link:link};
+           return {"status":false,"error":"captcha","link":`https://${link}`}
         }
         let download_link = $("a").map((i,el)=>{
             return el
         })
         await browser.close()
-        return $(download_link[quality]).attr("href")
+        return {"status":true,"link":$(download_link[quality]).attr("href")}
         }
      
 
