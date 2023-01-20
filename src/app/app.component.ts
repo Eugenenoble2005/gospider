@@ -5,6 +5,8 @@ import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatSelect } from '@angular/material/select';
 import { DialogComponent } from './dialog/dialog.component';
+import { HttpClient } from "@angular/common/http"
+const axios = require('axios').default;
 //https://v2.gogoanime.co.in/videos/kawaikereba-hentai-demo-suki-ni-natte-kuremasu-ka-dub-episode-12
 //@ts-ignore
 @Component({
@@ -23,7 +25,7 @@ export class AppComponent implements OnInit{
   @ViewChild(MatTable) public table!: MatTable<any>
   public scalping = false
   displayedColumns: string[] = ['episode', 'link'];
-  constructor(public electronService:ElectronService,public dialog:MatDialog){}
+  constructor(public electronService:ElectronService,public dialog:MatDialog,public http:HttpClient){}
   deployScalper(data:any){
       this.scalping = true
       let self = this
@@ -44,6 +46,14 @@ export class AppComponent implements OnInit{
      let start_episode = data.start_episode
      let episode_string_array = (url.split("/")[url.split("/").length-1]).split("-")
      episode_string_array.pop()
+     let x1 = episode_string_array.join("-").split("-") //we must not link episode_string_array directly for this to work, we must either deep copy or recreate the object
+     x1.pop()
+     let anime_id = x1.join("-")
+     console.log(anime_id)
+     //asynchronously query anime data
+     this.http.get(`https://api.consumet.org/anime/gogoanime/info/${anime_id}`).subscribe((rez:any)=>{
+      (<HTMLDivElement>document.getElementById("main")).style.backgroundImage = `url(${rez.image})`
+     })
      //use recursion to scalp for individual links
      function getLink(episode:number){
       data.driver = self.driver
@@ -52,15 +62,22 @@ export class AppComponent implements OnInit{
         return
       }
           data.url = "https://v2.gogoanime.co.in/videos/"+episode_string_array.join("-")+"-"+episode
-          self.electronService.ipcRenderer.invoke("spider",data).then((result:any)=>{
+          console.log(data.url)
+          //asynchronously get streaming link while scalper for download link is running
+          let stream_link =  axios.get(`https://api.consumet.org/anime/gogoanime/watch/${anime_id}-episode-${episode}`).then((resp:any)=>{
+            return resp
+           })
+          self.electronService.ipcRenderer.invoke("spider",data).then(async (result:any)=>{
             if(result){
               getLink(episode+1)
               result.episode = episode
+              //get streaming link
               self.episodes.push(result)
               //download automatically is needed
               if(self.auto_download){
-                self.openInChrome(result)
+                self.openInChrome(result.link)
               }
+              console.log(await stream_link)
             }
             //idk this thing throws errors for some reason
             try{

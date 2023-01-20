@@ -15,23 +15,23 @@
       <form class="example-form" #form = "ngForm" (ngSubmit) = "deployScalper(form.value)">
         <mat-form-field class="example-full-width" style="width:350px">
           <mat-label>Link</mat-label>
-          <input matInput required placeholder="v2.gogoanime.co.in link" name="url" id="url" ngModel>
+          <input matInput required placeholder="v2.gogoanime.co.in link" name="url" id="url" ngModel matTooltip="Visit 'gogoanime.co.in' or 'v2.gogoanime.co.in' and search for your desired anime. Click on it and copy the url from your browser. Gospider will attempt to find all download links for you">
         </mat-form-field>
         &nbsp;
         <mat-form-field appearance="fill">
           <mat-label>Quality</mat-label>
-          <mat-select matNativeControl required name="quality" ngModel>
+          <mat-select matNativeControl required name="quality" ngModel matTooltip="Select your desired video quality">
             <mat-option value="0">360p</mat-option>
             <mat-option value="1">480p</mat-option>
             <mat-option value="2">720p</mat-option>
             <mat-option value="3">1080p</mat-option>
           </mat-select>
         </mat-form-field> &nbsp;
-        <mat-form-field class="example-full-width" style="width:100px">
+        <mat-form-field class="example-full-width" style="width:150px">
           <mat-label>Start Episode</mat-label>
           <input matInput type="number" required placeholder="Start Episode"  name = "start_episode" ngModel>
         </mat-form-field> &nbsp;
-        <mat-form-field class="example-full-width" style="width:100px">
+        <mat-form-field class="example-full-width" style="width:150px">
           <mat-label>End Episode</mat-label>
           <input matInput placeholder="End Episode" required type="mumber" name="end_episode" ngModel>
         </mat-form-field> 
@@ -42,16 +42,12 @@
 </mat-toolbar>
 <table mat-table [dataSource]="episodes" class="mat-elevation-z8" #table *ngIf="episodes.length != 0" style = "background: transparent;">
 
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-  <!-- Position Column -->
   <ng-container matColumnDef="episode">
     <th mat-header-cell *matHeaderCellDef> Episode No. </th>
     <td mat-cell *matCellDef="let element"> {{element.episode}} </td>
   </ng-container>
 
-  <!-- Name Column -->
+
   <ng-container matColumnDef="link">
     <th mat-header-cell *matHeaderCellDef> Download </th>
     <td mat-cell *matCellDef="let element"> 
@@ -70,6 +66,6 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<main id = "main" style="background:#EFF5F5;height:100%">
+<main id = "main" style="background:#EFF5F5;height:100%;">
 
 </main>

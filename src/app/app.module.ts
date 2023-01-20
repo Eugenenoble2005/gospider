@@ -16,6 +16,7 @@ import { MatTooltipModule } from "@angular/material/tooltip"
 import { MatTableModule } from "@angular/material/table"
 import { MatSlideToggleModule } from "@angular/material/slide-toggle"
 import { MatDialogModule } from "@angular/material/dialog"
+import { HttpClientModule } from '@angular/common/http';
 //@ts-ignore
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MatDialogModule } from "@angular/material/dialog"
     MatToolbarModule,
     MatFormFieldModule,
     MatDialogModule,
+    HttpClientModule,
     MatTableModule,
     MatSlideToggleModule,
     MatTooltipModule,
