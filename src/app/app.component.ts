@@ -1,8 +1,10 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { ElectronService } from "ngx-electron"
 import { MatTable } from '@angular/material/table';
+import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatSelect } from '@angular/material/select';
+import { DialogComponent } from './dialog/dialog.component';
 //https://v2.gogoanime.co.in/videos/kawaikereba-hentai-demo-suki-ni-natte-kuremasu-ka-dub-episode-12
 //@ts-ignore
 @Component({
@@ -21,10 +23,22 @@ export class AppComponent implements OnInit{
   @ViewChild(MatTable) public table!: MatTable<any>
   public scalping = false
   displayedColumns: string[] = ['episode', 'link'];
-  constructor(public electronService:ElectronService){}
+  constructor(public electronService:ElectronService,public dialog:MatDialog){}
   deployScalper(data:any){
       this.scalping = true
       let self = this
+      //validate domain in url
+      let domain = new URL(data.url)
+      let accepted_hostnames = ["gogoanime.co.in","v2.gogoanime.co.in","www.gogoanime.co.in","www.v2.gogoanime.co.in"]
+      if(!accepted_hostnames.includes(domain.hostname)){
+        const dialog = this.dialog.open(DialogComponent,{
+          data:{message:"The url is not from the domain 'gogoanime.co.in' or 'v2.gogoanime.co.in' and will not work. Please get your link from 'gogoanime.com.in' or 'v2.gogoanime.co.in'"}
+        })
+        this.scalping = false
+        //halt execution
+        return
+      }
+
      let url = data.url
      let end_episode = data.end_episode
      let start_episode = data.start_episode

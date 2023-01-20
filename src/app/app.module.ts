@@ -15,6 +15,7 @@ import { MatProgressBarModule } from "@angular/material/progress-bar"
 import { MatTooltipModule } from "@angular/material/tooltip"
 import { MatTableModule } from "@angular/material/table"
 import { MatSlideToggleModule } from "@angular/material/slide-toggle"
+import { MatDialogModule } from "@angular/material/dialog"
 //@ts-ignore
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle"
     BrowserAnimationsModule,
     MatToolbarModule,
     MatFormFieldModule,
+    MatDialogModule,
     MatTableModule,
     MatSlideToggleModule,
     MatTooltipModule,
