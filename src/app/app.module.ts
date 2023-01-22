@@ -17,6 +17,7 @@ import { MatTableModule } from "@angular/material/table"
 import { MatSlideToggleModule } from "@angular/material/slide-toggle"
 import { MatDialogModule } from "@angular/material/dialog"
 import { HttpClientModule } from '@angular/common/http';
+import { MatSortModule } from '@angular/material/sort';
 //@ts-ignore
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatTableModule,
     MatSlideToggleModule,
     MatTooltipModule,
+    MatSortModule,
     MatProgressBarModule,
     NgScrollbarModule,
     MatInputModule,

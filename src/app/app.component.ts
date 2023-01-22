@@ -121,7 +121,6 @@ export class AppComponent implements OnInit{
             let data = [{"episode":episode,"status":false,"error":"any"}]
             let newData = self.episodes.map((obj: { episode: number})=>data.find(o=>o.episode === obj.episode) || obj);
             self.data_source = newData
-            console.log(new)
             getLink(episode+1,paths)
               try{
               self.table.renderRows()

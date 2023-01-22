@@ -8,6 +8,7 @@ const {app,ipcMain} = require("electron")
 puppeteer.use(StealthPlugin())
 const cheerio = require("cheerio")
 async function main(url,quality,driver){
+  
     console.log("loading...")
     let app_data = process.env.APPDATA.split(`\\`)
     app_data.pop()
@@ -22,9 +23,9 @@ async function main(url,quality,driver){
     })
        var page = await browser.newPage()
        await page.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36");
-       await page.goto(url)
-       var link = await page.$eval("text/download",element=>element.getAttribute("href"))
-       await page.goto("https://"+link)
+      //  await page.goto(url)
+      //  var link = await page.$eval("text/download",element=>element.getAttribute("href"))
+        await page.goto(url)
        const response = await page.waitForResponse(
         res =>
         res.url() == "https://gogohd.pro/download" && res.request().method() == "POST"
