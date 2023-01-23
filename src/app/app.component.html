@@ -41,7 +41,7 @@
       </form>
 </mat-toolbar>
 <main id = "main">
-<table mat-table [dataSource]="data_source" matSort  class="mat-elevation-z8" #table *ngIf="episodes.length != 0" style = "background: transparent;" id="main-table">
+<table mat-table [dataSource]="episodes" matSort  class="mat-elevation-z8" #table *ngIf="episodes.length != 0" style = "background: transparent;" id="main-table">
 
   <ng-container matColumnDef="episode">
     <th mat-header-cell *matHeaderCellDef mat-sort-header id="episode_bar"> Episode No. </th>

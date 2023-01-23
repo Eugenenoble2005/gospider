@@ -56,40 +56,41 @@ export class AppComponent implements OnInit{
      //asynchronously query anime data
      this.http.get(`https://api.consumet.org/anime/gogoanime/info/${anime_id}`).subscribe(async (rez:any)=>{
       (<HTMLTableElement>document.getElementById("main")).style.backgroundImage = `linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url(${rez.image})`
-      //get streaming links first
-      for(var x=start_episode-1; x<=end_episode-1;x++){
-        let episode = rez.episodes[x]
-        let url = `https://api.consumet.org/anime/gogoanime/watch/${episode?.id}`
-         this.http.get(url).subscribe(async (rez:any)=>{
-          let result = {"episode":episode.number,"error":"scalping","stream_link":rez.sources[data.quality]?.url,"status":false}
-          this.episodes.push(result)
-          download_paths.push(rez.download)
-          this.data_source.sort = this.sort
-          if(this.episodes.length == end_episode){
-            //run the following after loop is done
-            //sort table data by clicking on sort button
-            (<HTMLTableRowElement><any>document.getElementById("episode_bar")?.click());
-
-            //get download links with getLink() function
-            console.log(download_paths)
-            getLink(1,download_paths)
-          }
-          try{
-            this.table.renderRows()
-          }
-          catch{}
-        })
-      }
+      getStreamingLinks(rez,0)
      },(error:any)=>{
       this.dialog.open(DialogComponent,{
         data:{message:"Something went wrong, Please Try Again"}
       })
       this.scalping = false
      })
+      //get streaming links with recursion
+      function getStreamingLinks(rez:any,count:number){
+        if(count == end_episode){
+          getLink(1,download_paths)
+          return
+        }
+      let episode = rez?.episodes[count]
+      let url = `https://api.consumet.org/anime/gogoanime/watch/${episode?.id}`
+      self.http.get(url).subscribe(async (res:any)=>{
+        let result = {"episode":episode.number,"error":"scalping","stream_link":res.sources[data.quality]?.url,"status":false}
+        self.episodes.push(result)
+        try{
+            self.table.renderRows()
+           }
+          catch{}
+        download_paths.push(rez.download)
+        getStreamingLinks(rez,count+1)
+       
+      },(error)=>{
+        //move to next episode on failure
+        getStreamingLinks(rez,count+1)
+      })
+    }
    //  use recursion to scalp for download links
      function getLink(episode:number,paths:Array<any>){
       data.driver = self.driver
       if(episode == end_episode){
+        console.log(episode)
         self.scalping = false
         return
       }
@@ -118,9 +119,13 @@ export class AppComponent implements OnInit{
             }
             catch{}
           },async (error:any)=>{
+            /**
+             * THIS IS THERE YOU STOPPED, YOU WERE TRYING TO FIGURE OUT WHY IT WASNT GETTING DOWNLAOD LINKS FOR EVERYTHING
+             */
+            console.log(episode)
             let data = [{"episode":episode,"status":false,"error":"any"}]
             let newData = self.episodes.map((obj: { episode: number})=>data.find(o=>o.episode === obj.episode) || obj);
-            self.data_source = newData
+            self.episodes = newData
             getLink(episode+1,paths)
               try{
               self.table.renderRows()
