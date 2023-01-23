@@ -52,7 +52,7 @@ export class AppComponent implements OnInit{
      console.log(anime_id)
      //asynchronously query anime data
      this.http.get(`https://api.consumet.org/anime/gogoanime/info/${anime_id}`).subscribe((rez:any)=>{
-      (<HTMLDivElement>document.getElementById("main")).style.backgroundImage = `url(${rez.image})`
+      (<HTMLDivElement>document.getElementById("main")).style.backgroundImage = `linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url(${rez.image})`
      })
      //use recursion to scalp for individual links
      function getLink(episode:number){
@@ -62,11 +62,11 @@ export class AppComponent implements OnInit{
         return
       }
           data.url = "https://v2.gogoanime.co.in/videos/"+episode_string_array.join("-")+"-"+episode
-          console.log(data.url)
           //asynchronously get streaming link while scalper for download link is running
-          let stream_link =  axios.get(`https://api.consumet.org/anime/gogoanime/watch/${anime_id}-episode-${episode}`).then((resp:any)=>{
-            return resp
-           })
+          //this no longer works, check consumet.org
+          // let stream_link =  axios.get(`https://api.consumet.org/anime/gogoanime/watch/${anime_id}-episode-${episode}`).then((resp:any)=>{
+          //   return resp
+          //  })
           self.electronService.ipcRenderer.invoke("spider",data).then(async (result:any)=>{
             if(result){
               getLink(episode+1)
@@ -77,7 +77,6 @@ export class AppComponent implements OnInit{
               if(self.auto_download){
                 self.openInChrome(result.link)
               }
-              console.log(await stream_link)
             }
             //idk this thing throws errors for some reason
             try{

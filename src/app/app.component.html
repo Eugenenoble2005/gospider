@@ -40,32 +40,31 @@
         <button mat-flat-button color="primary" [disabled]="scalping"> {{ scalping ? "Scalping...This might take a while. Restart application to stop" : "Find Links" }} </button>
       </form>
 </mat-toolbar>
-<table mat-table [dataSource]="episodes" class="mat-elevation-z8" #table *ngIf="episodes.length != 0" style = "background: transparent;">
+<main id = "main">
+  <table mat-table [dataSource]="episodes" class="mat-elevation-z8" #table *ngIf="episodes.length != 0" style = "background: transparent;">
 
-  <ng-container matColumnDef="episode">
-    <th mat-header-cell *matHeaderCellDef> Episode No. </th>
-    <td mat-cell *matCellDef="let element"> {{element.episode}} </td>
-  </ng-container>
-
-
-  <ng-container matColumnDef="link">
-    <th mat-header-cell *matHeaderCellDef> Download </th>
-    <td mat-cell *matCellDef="let element"> 
-      <!--If downlaod link is obtained succesfully-->
-      <button *ngIf="element.status ==true" (click)="openInChrome(element.link)" mat-flat-button color="accent" >Download In Chrome</button> 
-
-      <!-- If error occurs -->
-      <button *ngIf="element.status == false && element.error=='any'" mat-flat-button color="primary" matTooltip="Your network connection may have failed or it is too congested causing captcha blocks. You can retry now or refresh your connection and try later" (click) = "retryCrawl(element.episode,$event)" disabled="false">Failed:Network Error, Click to retry</button>
-      
-
-      <!-- If captcha block is detected-->
-      <button *ngIf="element.status == false && element.error=='captcha'" (click)="openInChrome(element.link)" mat-flat-button color="warm">Captcha Block Detected. Complete in Browser?</button></td>
-  </ng-container>
-
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-<main id = "main" style="background:#EFF5F5;height:100%;">
-
+    <ng-container matColumnDef="episode">
+      <th mat-header-cell *matHeaderCellDef> Episode No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.episode}} </td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="link">
+      <th mat-header-cell *matHeaderCellDef> Download </th>
+      <td mat-cell *matCellDef="let element"> 
+        <!--If downlaod link is obtained succesfully-->
+        <button *ngIf="element.status ==true" (click)="openInChrome(element.link)" mat-flat-button color="accent" >Download In Chrome</button> 
+  
+        <!-- If error occurs -->
+        <button *ngIf="element.status == false && element.error=='any'" mat-flat-button color="primary" matTooltip="Your network connection may have failed or it is too congested causing captcha blocks. You can retry now or refresh your connection and try later" (click) = "retryCrawl(element.episode,$event)" disabled="false">Failed:Network Error, Click to retry</button>
+        
+  
+        <!-- If captcha block is detected-->
+        <button *ngIf="element.status == false && element.error=='captcha'" (click)="openInChrome(element.link)" mat-flat-button color="warm">Captcha Block Detected. Complete in Browser?</button></td>
+    </ng-container>
+  
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 </main>
