@@ -25,21 +25,28 @@ async function main(url,quality,driver){
        await page.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36");
       //  await page.goto(url)
       //  var link = await page.$eval("text/download",element=>element.getAttribute("href"))
-        await page.goto(url)
-       const response = await page.waitForResponse(
-        res =>
-        res.url() == "https://gogohd.pro/download" && res.request().method() == "POST"
-      );
-        let download_body = await response.text()
-        const $ = cheerio.load(download_body)
-        if($("a").length == 0){
-           return {"status":false,"error":"captcha","link":`https://${link}`}
+      let link = url
+        await page.goto(link)
+        console.log(new URL(link).hostname+"/download")
+        try{
+          const response = await page.waitForResponse(
+            res =>
+            res.url() == "https://"+new URL("https://"+link).hostname+"/download" && res.request().method() == "POST"
+          );
+          let download_body = await response.text()
+          const $ = cheerio.load(download_body)
+          if($("a").length == 0){
+             return {"status":false,"error":"captcha","link":`${link}`}
+          }
+          let download_link = $("a").map((i,el)=>{
+              return el
+          })
+          await browser.close()
+          return {"status":true,"link":$(download_link[quality]).attr("href")}
         }
-        let download_link = $("a").map((i,el)=>{
-            return el
-        })
-        await browser.close()
-        return {"status":true,"link":$(download_link[quality]).attr("href")}
+        catch{
+          return {"status":false,"error":"captcha","link":`${link}`}
+        }
         }
      
 
