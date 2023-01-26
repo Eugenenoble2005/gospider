@@ -7,6 +7,8 @@ import { MatSelect } from '@angular/material/select';
 import { DialogComponent } from './dialog/dialog.component';
 import { HttpClient } from "@angular/common/http"
 import { MatSort } from '@angular/material/sort';
+import { StreamComponent } from './stream/stream.component';
+import { ScriptService } from 'ngx-script-loader';
 const axios = require('axios').default;
 //https://v2.gogoanime.co.in/videos/kawaikereba-hentai-demo-suki-ni-natte-kuremasu-ka-dub-episode-12
 //@ts-ignore
@@ -20,7 +22,7 @@ export class AppComponent implements OnInit{
   public auto_download:boolean = true
   download_paths: Array<any> = [];
   ngOnInit(): void {
-  
+ 
   }
   public driver = "chrome"
   public episodes:any = []
@@ -29,7 +31,7 @@ export class AppComponent implements OnInit{
   @ViewChild(MatSort) sort!: MatSort;
   public scalping = false
   displayedColumns: string[] = ['episode', 'link',"stream"];
-  constructor(public electronService:ElectronService,public dialog:MatDialog,public http:HttpClient){}
+  constructor(public electronService:ElectronService,public dialog:MatDialog,public http:HttpClient,public scriptService:ScriptService){}
   async deployScalper(data:any){
       this.scalping = true
       let self = this
@@ -173,6 +175,15 @@ export class AppComponent implements OnInit{
   }
   openInChrome(link:any){
     this.electronService.ipcRenderer.invoke("openInChrome",link)
+  }
+  streamEpisode(link:any)
+  {
+    this.dialog.open(StreamComponent,{
+      backdropClass:"stream-blur",
+      data:{"stream_link":link},
+      width:"900px",
+      height:"700px"
+    })
   }
   title = 'gospider';
 }

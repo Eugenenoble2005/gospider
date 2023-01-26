@@ -30,6 +30,7 @@
     "electron-acrylic-window": "^0.5.11",
     "esm": "^3.2.25",
     "ngx-electron": "^2.2.0",
+    "ngx-script-loader": "^2.0.0",
     "ngx-scrollbar": "9.0.2",
     "patch-package": "^6.5.1",
     "puppeteer": "^19.5.0",
@@ -53,6 +54,7 @@
     "karma-coverage": "~2.1.0",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
-    "typescript": "~4.5.2"
+    "typescript": "~4.5.2",
+    "video.js": "^7.21.1"
   }
 }

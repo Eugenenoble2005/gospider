@@ -41,3 +41,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
   color: white !important;
 }
+.stream-blur{
+    backdrop-filter: blur(5rem);
+}

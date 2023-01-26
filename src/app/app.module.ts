@@ -18,10 +18,13 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle"
 import { MatDialogModule } from "@angular/material/dialog"
 import { HttpClientModule } from '@angular/common/http';
 import { MatSortModule } from '@angular/material/sort';
+import { StreamComponent } from './stream/stream.component';
+import { ScriptService } from 'ngx-script-loader';
 //@ts-ignore
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StreamComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatButtonModule,
     MatSelectModule
   ],
-  providers: [ElectronService],
+  providers: [ElectronService,ScriptService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
