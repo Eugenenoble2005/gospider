@@ -18,6 +18,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle"
 import { MatDialogModule } from "@angular/material/dialog"
 import { HttpClientModule } from '@angular/common/http';
 import { MatSortModule } from '@angular/material/sort';
+import { MatProgressSpinnerModule} from "@angular/material/progress-spinner"
 import { StreamComponent } from './stream/stream.component';
 import { ScriptService } from 'ngx-script-loader';
 //@ts-ignore
@@ -32,6 +33,7 @@ import { ScriptService } from 'ngx-script-loader';
     MatToolbarModule,
     MatFormFieldModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
     HttpClientModule,
     MatTableModule,
     MatSlideToggleModule,

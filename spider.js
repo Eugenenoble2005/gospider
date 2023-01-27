@@ -10,6 +10,7 @@ const cheerio = require("cheerio")
 async function main(url,quality,driver){
   
     console.log("loading...")
+    //using user data helps convince google the browser is human operated as opposed to an empty chromium instance.
     let app_data = process.env.APPDATA.split(`\\`)
     app_data.pop()
     let chrome_data_folder = app_data.join(`\\\\`)+"\\\\"+"Local\\\\Google\\\\Chrome\\\\User Data";
@@ -22,16 +23,14 @@ async function main(url,quality,driver){
         executablePath:driver == "chrome" ? chromePaths.chrome : edge_path,
     })
        var page = await browser.newPage()
-       await page.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36");
       //  await page.goto(url)
       //  var link = await page.$eval("text/download",element=>element.getAttribute("href"))
-      let link = url
+        let link = url
         await page.goto(link)
-        console.log(new URL(link).hostname+"/download")
-        try{
+        console.log("https://"+new URL(link).hostname+"/download")
           const response = await page.waitForResponse(
             res =>
-            res.url() == "https://"+new URL("https://"+link).hostname+"/download" && res.request().method() == "POST"
+            res.url() == "https://"+new URL(link).hostname+"/download" && res.request().method() == "POST"
           );
           let download_body = await response.text()
           const $ = cheerio.load(download_body)
@@ -44,11 +43,7 @@ async function main(url,quality,driver){
           await browser.close()
           return {"status":true,"link":$(download_link[quality]).attr("href")}
         }
-        catch{
-          await browser.close()
-          return {"status":false,"error":"captcha","link":`${link}`}
-        }
-        }
+        
      
 
 ipcMain.handle("spider",async (event,data)=>{

@@ -44,3 +44,38 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .stream-blur{
     backdrop-filter: blur(5rem);
 }
+
+@font-face {
+  font-family: 'VideoJS';
+  src: url('https://vjs.zencdn.net/f/1/vjs.eot');
+  src: url('https://vjs.zencdn.net/f/1/vjs.eot?#iefix') format('embedded-opentype'), 
+    url('https://vjs.zencdn.net/f/1/vjs.woff') format('woff'),     
+    url('https://vjs.zencdn.net/f/1/vjs.ttf') format('truetype');
+}
+
+.video-js .vjs-play-control.vjs-playing .vjs-icon-placeholder:before, .vjs-icon-pause:before {
+  content: "\f103";
+  font-family: 'VideoJS';
+}
+
+.video-js .vjs-mute-control .vjs-icon-placeholder:before, .vjs-icon-volume-high:before {
+  content: "\f107";
+  font-family: 'VideoJS';
+}
+
+.video-js .vjs-big-play-button .vjs-icon-placeholder:before, .video-js .vjs-play-control .vjs-icon-placeholder:before, .vjs-icon-play:before {
+  content: "\f101";
+  font-family: 'VideoJS';
+}
+
+.video-js .vjs-picture-in-picture-control .vjs-icon-placeholder:before, .vjs-icon-picture-in-picture-enter:before {
+  content: "\f121";
+  font-family: 'VideoJS';
+}
+
+
+
+.video-js .vjs-fullscreen-control .vjs-icon-placeholder:before, .vjs-icon-fullscreen-enter:before {
+  content: "\f108";
+  font-family: 'VideoJS';
+}
