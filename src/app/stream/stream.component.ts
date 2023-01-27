@@ -13,7 +13,7 @@ export class StreamComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,public scriptService:ScriptService) { }
 
   ngOnInit(): void {
-    this.scriptService.runScript("https://vjs.zencdn.net/7.21.1/video.min.js").subscribe((result)=>{
+    this.scriptService.runScript("assets/video.min.js").subscribe((result)=>{
       console.log(result)
      },(error)=>{
       console.log(error)

@@ -45,6 +45,7 @@ async function main(url,quality,driver){
           return {"status":true,"link":$(download_link[quality]).attr("href")}
         }
         catch{
+          await browser.close()
           return {"status":false,"error":"captcha","link":`${link}`}
         }
         }
