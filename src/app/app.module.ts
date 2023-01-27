@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule} from "@angular/material/progress-spinner"
 import { StreamComponent } from './stream/stream.component';
+import { MatAutocompleteModule } from "@angular/material/autocomplete"
 import { ScriptService } from 'ngx-script-loader';
 //@ts-ignore
 @NgModule({
@@ -31,6 +32,7 @@ import { ScriptService } from 'ngx-script-loader';
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+    MatAutocompleteModule,
     MatFormFieldModule,
     MatDialogModule,
     MatProgressSpinnerModule,

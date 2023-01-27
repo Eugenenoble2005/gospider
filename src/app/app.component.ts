@@ -17,7 +17,6 @@ const axios = require('axios').default;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-
 export class AppComponent implements OnInit{
   public auto_download:boolean = true
   download_paths: Array<any> = [];
@@ -26,6 +25,7 @@ export class AppComponent implements OnInit{
   }
   public driver = "chrome"
   public episodes:any = []
+  public animes:Array<any> = []
   public data_source = new MatTableDataSource(this.episodes)
   @ViewChild(MatTable) public table!: MatTable<any>
   @ViewChild(MatSort) sort!: MatSort;
@@ -36,24 +36,9 @@ export class AppComponent implements OnInit{
       this.scalping = true
       let self = this
       //validate domain in url
-      let domain = new URL(data.url)
-      let accepted_hostnames = ["gogoanime.co.in","v2.gogoanime.co.in","www.gogoanime.co.in","www.v2.gogoanime.co.in"]
-      if(!accepted_hostnames.includes(domain.hostname)){
-        const dialog = this.dialog.open(DialogComponent,{
-          data:{message:"The url is not from the domain 'gogoanime.co.in' or 'v2.gogoanime.co.in' and will not work. Please get your link from 'gogoanime.com.in' or 'v2.gogoanime.co.in'"}
-        })
-        this.scalping = false
-        //halt execution
-        return
-      }
-     let url = data.url
+     let anime_id = data.anime_id
      let end_episode = data.end_episode
      let start_episode = data.start_episode
-     let episode_string_array = (url.split("/")[url.split("/").length-1]).split("-")
-     episode_string_array.pop()
-     let x1 = episode_string_array.join("-").split("-") //we must not link episode_string_array directly for this to work, we must either deep copy or recreate the object
-     x1.pop()
-     let anime_id = x1.join("-")
      let download_paths:Array<any> = []
      let stream_paths:Array<any> = []
      //asynchronously query anime data
@@ -184,6 +169,18 @@ export class AppComponent implements OnInit{
       width:"900px",
       height:"700px"
     })
+  }
+  searchAnime($event:any){
+    this.animes = []
+    let text = $event.target.value;
+    console.log(text)
+    this.http.get(`https://api.consumet.org/anime/gogoanime/${text}`).subscribe((rez:any)=>{
+      console.log(rez)
+      rez.results.forEach((element: { id: any; }) => {
+        this.animes.push(element.id)
+      });
+    })
+    console.log(this.animes)
   }
   title = 'gospider';
 }

@@ -13,9 +13,18 @@
 </mat-toolbar>
 <mat-toolbar style="height:120px"> 
       <form class="example-form" #form = "ngForm" (ngSubmit) = "deployScalper(form.value)">
-        <mat-form-field class="example-full-width" style="width:350px">
+        <!-- <mat-form-field class="example-full-width" style="width:350px">
           <mat-label>Link</mat-label>
           <input matInput required placeholder="v2.gogoanime.co.in link" name="url" id="url" ngModel matTooltip="Visit 'gogoanime.co.in' or 'v2.gogoanime.co.in' and search for your desired anime. Click on it and copy the url from your browser. Gospider will attempt to find all download links for you">
+        </mat-form-field> -->
+        <mat-form-field class="example-full-width" style="width:350px">
+          <mat-label>Anime...</mat-label>
+          <input matInput required placeholder="Type to search..." name="anime_id" id="url" ngModel matTooltip="Search for your anime" (keyup)="searchAnime($event)" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of animes" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
         </mat-form-field>
         &nbsp;
         <mat-form-field appearance="fill">
