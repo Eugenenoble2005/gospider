@@ -30,12 +30,11 @@ export class AppComponent implements OnInit{
   @ViewChild(MatTable) public table!: MatTable<any>
   @ViewChild(MatSort) sort!: MatSort;
   public scalping = false
-  displayedColumns: string[] = ['episode', 'link',"stream"];
+  displayedColumns: string[] = ['episode', 'link',"stream","secondary_download"];
   constructor(public electronService:ElectronService,public dialog:MatDialog,public http:HttpClient,public scriptService:ScriptService){}
   async deployScalper(data:any){
       this.scalping = true
       let self = this
-      //validate domain in url
      let anime_id = data.anime_id
      let end_episode = data.end_episode
      let start_episode = data.start_episode
@@ -44,24 +43,47 @@ export class AppComponent implements OnInit{
      //asynchronously query anime data
      this.http.get(`https://api.consumet.org/anime/gogoanime/info/${anime_id}`).subscribe(async (rez:any)=>{
       (<HTMLTableElement>document.getElementById("main")).style.backgroundImage = `linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url(${rez.image})`
-      getStreamingLinks(rez,0)
+      getStreamingLinks(rez,start_episode-1)
      },(error:any)=>{
-      this.dialog.open(DialogComponent,{
-        data:{message:"Something went wrong, Please Try Again"}
-      })
+      //change in background color is to allow blur effect to work in windows acrylic window
+      document.body.style.background = "#202124"
+      if(error.status == 404){
+        this.dialog.open(DialogComponent,{
+          data:{message:"Anime not found, Please use the suggestions provided in the search bar"},
+          backdropClass:"stream-blur",
+        }).beforeClosed().subscribe(()=>{
+          document.body.style.background = "transparent"
+        })
+      }
+      else if(error.status == 429){
+        this.dialog.open(DialogComponent,{
+          data:{message:"Slow down cowboy, You've crawled alot in such a short while. Try again in some minutes"},
+          backdropClass:"stream-blur",
+        }).beforeClosed().subscribe(()=>{
+          document.body.style.background = "transparent"
+        })
+      }
+      else{
+        //agnostic
+        this.dialog.open(DialogComponent,{
+          data:{message:"Something went wrong. Please retry again later"},
+          backdropClass:"stream-blur",
+        }).beforeClosed().subscribe(()=>{
+          document.body.style.background = "transparent"
+        })
+      }
       this.scalping = false
      })
       //get streaming links with recursion
       function getStreamingLinks(rez:any,count:number){
         if(count == end_episode){
-          console.log(download_paths)
           getLink(1,download_paths,stream_paths)
           return
         }
       let episode = rez?.episodes[count]
       let url = `https://api.consumet.org/anime/gogoanime/watch/${episode?.id}`
       self.http.get(url).subscribe(async (res:any)=>{
-        let result = {"episode":episode.number,"error":"scalping","stream_link":res.sources[data.quality]?.url,"status":false}
+        let result = {"episode":episode.number,"error":"scalping","stream_link":res.sources[data.quality]?.url,"status":false,"secondary_download":res.download}
         self.episodes.push(result)
         try{
             self.table.renderRows()
@@ -89,6 +111,7 @@ export class AppComponent implements OnInit{
           self.electronService.ipcRenderer.invoke("spider",data).then(async (result:any)=>{
             if(result){
               result.episode = episode
+              result.secondary_download = paths[episode-1]
               result.stream_link = stream_paths[episode-1]
               //get streaming link
               //download automatically is needed+
@@ -115,7 +138,7 @@ export class AppComponent implements OnInit{
              * THIS IS THERE YOU STOPPED, YOU WERE TRYING TO FIGURE OUT WHY IT WASNT GETTING DOWNLAOD LINKS FOR EVERYTHING
              */
             console.log(episode)
-            let data = [{"episode":episode,"status":false,"error":"any","stream_link":stream_paths[episode-1]}]
+            let data = [{"episode":episode,"status":false,"error":"any","stream_link":stream_paths[episode-1],"secondary_download":paths[episode-1]}]
             let newData = self.episodes.map((obj: { episode: number})=>data.find(o=>o.episode === obj.episode) || obj);
             self.episodes = newData
             getLink(episode+1,paths,stream_paths)
@@ -163,24 +186,24 @@ export class AppComponent implements OnInit{
   }
   streamEpisode(link:any)
   {
+    document.body.style.background = "#202124"
     this.dialog.open(StreamComponent,{
       backdropClass:"stream-blur",
       data:{"stream_link":link},
       width:"900px",
-      height:"700px"
+      height:"400px"
+    }).beforeClosed().subscribe(()=>{
+      document.body.style.background = "transparent"
     })
   }
   searchAnime($event:any){
     this.animes = []
     let text = $event.target.value;
-    console.log(text)
     this.http.get(`https://api.consumet.org/anime/gogoanime/${text}`).subscribe((rez:any)=>{
-      console.log(rez)
       rez.results.forEach((element: { id: any; }) => {
         this.animes.push(element.id)
       });
     })
-    console.log(this.animes)
   }
   title = 'gospider';
 }
