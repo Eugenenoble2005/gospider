@@ -7,7 +7,7 @@ Build instructions are generally the same for all desktop operating systems but 
 <ul>
 <li>
 First clone the repo, install angular dependencies and serve.
-<code>
+<code><br>
 git pull repo<br>
 cd gospider<br>
 npm install <br>
@@ -22,3 +22,17 @@ npm start
 </code>
 </li>
 </ul>
+
+<h1>
+Usage Instructions
+</h1>
+<p>Usage is very straight forward. Input your desired anime into the search bar, chose your quality and episode range and search. Gospider would quickly fetch a stream button and a secondary downlooad button for all episodes. After all streaming episodes have been optained, Gospider would start looking for the download links(this might take an avearge of 20-30 seconds per episode). But not to worry, if you tick the autodownload switch, episodes would start downloading on your default browser as soon as they are obtained. 
+</p><br>
+<h2>Download Exceptions</h2>
+<p>Several exceptions may arise during the crawl process for download links:
+<ul>
+<li><span style="text-decoration:underline">Captcha Block:</span><br>
+If a captcha block is encountered while gospider is looking for download links, gospider will abort the crawl and return the secondary link instead so you can manually complete the download quickly. Captcha blocks can be caused if you have crawled alot in a small amount of time. You can remedy this by refreshing your network(Rebooting your router and waiting for some minutes), disconnecting all VPNs, or changing your driver to another browser(i.e chrome to edge or vice versa)
+</li>
+<li><span style="text-decoration:underline">General Network Failure:</span><br>
+This can be caused by a number of network connectivity issues like very slow or non function internet. It can also be triggered if your selected browser was not installed
