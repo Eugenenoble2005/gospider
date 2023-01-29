@@ -65,11 +65,11 @@
       <button *ngIf="element.status ==true" (click)="openInChrome(element.link)" mat-flat-button color="accent" >Download In Chrome</button> 
 
       <!-- If error occurs -->
-      <button *ngIf="element.status == false && element.error=='any'" mat-flat-button color="primary" matTooltip="Your network connection may have failed or it is too congested. You can retry now or refresh your connection and try later" (click) = "retryCrawl(element.episode,$event)" disabled="false">Failed:Network Error, Click to retry</button>
+      <button *ngIf="element.status == false && element.error=='any'" mat-flat-button color="primary" matTooltip="Your network connection may have failed or your selected browser is not properly installed. You can retry now or refresh your connection and try later" (click) = "retryCrawl(element.episode,$event)" disabled="false">Failed:Network Error, Click to retry</button>
       
 
       <!-- If captcha block is detected-->
-      <button *ngIf="element.status == false && element.error=='captcha'" (click)="openInChrome(element.link)" mat-flat-button color="warm">Captcha Block Detected. Complete in Browser?</button>
+      <button *ngIf="element.status == false && element.error=='captcha'" (click)="openInChrome(element.link)" mat-flat-button color="warm" matTooltip="Too many requests is causing captcha blocks on the host. You may click to complete the captcha in your browser. ">Captcha Block Detected. Complete in Browser?</button>
 
       <!-- If link is not ready yet-->
       <button *ngIf="element.status == false && element.error == 'scalping'" mat-flat-button color="warm" disabled>Searching...</button>
