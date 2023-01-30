@@ -33,7 +33,7 @@ Usage Instructions
 <p>Several exceptions may arise during the crawl process for download links:
 <ul>
 <li><span style="text-decoration:underline">Captcha Block:</span><br>
-If a captcha block is encountered while gospider is looking for download links, gospider will abort the crawl and return the secondary link instead so you can manually complete the download quickly. Captcha blocks can be caused if you have crawled alot in a small amount of time. You can remedy this by refreshing your network(Rebooting your router and waiting for some minutes), disconnecting all VPNs, or changing your driver to another browser(i.e chrome to edge or vice versa)
+If a captcha block is encountered while gospider is looking for download links, gospider will abort the crawl and return the secondary link instead so you can manually complete the download quickly. Captcha blocks can be caused if you have crawled alot in a small amount of time. You can remedy this by refreshing your network(Rebooting your router and waiting for some minutes), disconnecting all VPNs, or changing your driver to another browser.(i.e chrome to edge or vice versa). It also helps to ensure your google account is signed in on your selected browser. This helps convince recaptcha that the download link search is performed by a human and not a bot.
 </li>
 <li><span style="text-decoration:underline">General Network Failure:</span><br>
 This can be caused by a number of network connectivity issues like very slow or non function internet. It can also be triggered if your selected browser was not installed
