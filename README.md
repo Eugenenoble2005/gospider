@@ -8,9 +8,10 @@ Build instructions are generally the same for all desktop operating systems but 
 <li>
 First clone the repo, install angular dependencies and serve.
 <code><br>
-git pull repo<br>
+git clone https://github.com/Eugenenoble2005/gospider.git<br>
 cd gospider<br>
 npm install <br>
+npx patch-package ngx-electron<br>
 npx ng serve
 </code><br>
 For windows platform, ensure you have windows build tools for node installed. You can install this by running:
