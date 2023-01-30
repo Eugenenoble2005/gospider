@@ -37,3 +37,5 @@ If a captcha block is encountered while gospider is looking for download links, 
 </li>
 <li><span style="text-decoration:underline">General Network Failure:</span><br>
 This can be caused by a number of network connectivity issues like very slow or non function internet. It can also be triggered if your selected browser was not installed
+<br><br><br>
+<span style = "font-size:8px">Like this project? You can donate at <a href = "https://www.buymeacoffee.com/nobleeugenY">Buy Me A Cofee</a></span>
