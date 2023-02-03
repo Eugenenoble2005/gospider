@@ -4,20 +4,19 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatSelect } from '@angular/material/select';
-import { DialogComponent } from './dialog/dialog.component';
 import { HttpClient } from "@angular/common/http"
 import { MatSort } from '@angular/material/sort';
-import { StreamComponent } from './stream/stream.component';
 import { ScriptService } from 'ngx-script-loader';
-const axios = require('axios').default;
-//https://v2.gogoanime.co.in/videos/kawaikereba-hentai-demo-suki-ni-natte-kuremasu-ka-dub-episode-12
-//@ts-ignore
+import { DialogComponent } from '../dialog/dialog.component';
+import { StreamComponent } from '../stream/stream.component';
+
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss']
 })
-export class AppComponent implements OnInit{
+export class MainComponent implements OnInit {
+
   public auto_download:boolean = true
   download_paths: Array<any> = [];
   ngOnInit(): void {
@@ -206,4 +205,5 @@ export class AppComponent implements OnInit{
     })
   }
   title = 'gospider';
+
 }

@@ -53,11 +53,33 @@ async function main(url,quality,driver){
           })
            browser.close()
           return {"status":true,"link":$(download_link[quality]).attr("href")}
-        }
-        
-     
+}
+async function scrapeHanime(hentai_id,driver){
+    let url = `https://hanime.tv/videos/hentai/${hentai_id}`
+    console.log("loading...")
+    //using user data helps convince google the browser is human operated as opposed to an empty chromium instance.
+    let app_data = process.env.APPDATA.split(`\\`)
+    app_data.pop()
+    let chrome_data_folder = app_data.join(`\\\\`)+"\\\\"+"Local\\\\Google\\\\Chrome\\\\User Data";
+    let edge_data_folder = app_data.join(`\\\\`)+"\\\\"+"Local\\\\Microsoft\\\\Edge\\\\User Data";
+    let edge_path = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+   //C:\\Users\\noble\\AppData\\Local\\Google\\Chrome\\User Data
+   let link = url
+    const browser = await puppeteer.launch({
+      headless:true,
+      userDataDir:driver == "chrome" ? chrome_data_folder : edge_data_folder,
+        executablePath:driver == "chrome" ? chromePaths.chrome : edge_path,
+    })
 
+    var page = await browser.newPage()
+    await page.goto(url)
+    return await page.content()
+
+}         
 ipcMain.handle("spider",async (event,data)=>{
     //do nothing eith error
      return main(data.url,data.quality,data.driver)
+})
+ipcMain.handle("hanime",async (event,data)=>{
+  return scrapeHanime(data.hentai_id,data.driver)
 })

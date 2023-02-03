@@ -1,0 +1,37 @@
+<mat-toolbar> 
+    <mat-progress-bar mode="indeterminate" *ngIf="scalping"></mat-progress-bar>
+      <span style="margin-top:10px">Hanime Scraper</span>
+      <span style="justify-content: right;display: flex;" class = "driver">
+        <button  mat-flat-button mat-flat-button color="accent" routerLink="/">Back To Anime</button> 
+   &nbsp;&nbsp;
+        <mat-form-field  appearance="fill" matTooltip="Select browser to crawl with, your selected brower must be installed to its default location. If a browser keeps failing, or keeps getting captcha blocks switch to the other">
+          <mat-label>Driver</mat-label>
+          <mat-select matNativeControl required [(ngModel)] = "driver">
+            <mat-option value="chrome">Chrome</mat-option>
+            <mat-option value="edge">Edge</mat-option>
+          </mat-select>
+        </mat-form-field>&nbsp;
+        <mat-slide-toggle  matTooltip="Automatically begin to download episodes as they are crawled" color="accent">Auto Download</mat-slide-toggle></span>
+  </mat-toolbar>
+  <mat-toolbar style="height:120px"> 
+        <form class="example-form" #form = "ngForm" style = "width:100%;text-align: center !important" (ngSubmit) = "findWank(form.value)">
+          <!-- <mat-form-field class="example-full-width" style="width:350px">
+            <mat-label>Link</mat-label>
+            <input matInput required placeholder="v2.gogoanime.co.in link" name="url" id="url" ngModel matTooltip="Visit 'gogoanime.co.in' or 'v2.gogoanime.co.in' and search for your desired anime. Click on it and copy the url from your browser. Gospider will attempt to find all download links for you">
+          </mat-form-field> -->
+          <mat-form-field class="example-full-width" style="width:350px">
+            <mat-label>Search For Your Hentai....</mat-label>
+            <input matInput required placeholder="Type to search..." (keyup)="searchHentai($event)" name="hentai_id" id="hentai_id" ngModel matTooltip="Search for your anime" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of hentai_list" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          &nbsp;
+     
+          &nbsp;
+          &nbsp;
+          <button mat-flat-button color="primary" [disabled]="scalping"> {{ scalping ? "Scalping...This might take a while. Restart application to stop" : "Find Wank" }} </button>
+        </form>
+  </mat-toolbar>

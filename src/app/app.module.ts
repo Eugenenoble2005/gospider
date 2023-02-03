@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from "@angular/material/toolbar"
@@ -22,11 +22,16 @@ import { MatProgressSpinnerModule} from "@angular/material/progress-spinner"
 import { StreamComponent } from './stream/stream.component';
 import { MatAutocompleteModule } from "@angular/material/autocomplete"
 import { ScriptService } from 'ngx-script-loader';
+import appRoutes from './app-routing.module';
+import { MainComponent } from './main/main.component';
+import { HentaiComponent } from './hentai/hentai.component';
 //@ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
-    StreamComponent
+    StreamComponent,
+    MainComponent,
+    HentaiComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +39,7 @@ import { ScriptService } from 'ngx-script-loader';
     MatToolbarModule,
     MatAutocompleteModule,
     MatFormFieldModule,
+    RouterModule.forRoot(appRoutes),
     MatDialogModule,
     MatProgressSpinnerModule,
     HttpClientModule,
