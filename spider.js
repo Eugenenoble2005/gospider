@@ -34,6 +34,9 @@ async function main(url,quality,driver){
       //untested
       let app_data = os.homedir()
       chrome_data_folder = app_data+"\\\\"+"Library"+"\\\\"+"Application"+"\\\\"+"Support"+"\\\\"+"Google"+"\\\\"+"Chrome"
+      edge_path = "\\Applications\\Microsoft Edge.app\\Contents\\MacOS\\Microsoft Edge"
+      edge_data_folder = app_data+"\\\\"+"Library"+"\\\\"+"Application Support"+"\\\\"+"Microsoft"+"\\\\"+"Edge"
+
     }
    //C:\\Users\\noble\\AppData\\Local\\Google\\Chrome\\User Data
    let link = url
