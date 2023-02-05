@@ -59,7 +59,14 @@ export class HentaiComponent implements OnInit {
             }
         })
       },(error:any)=>{
-       
+        this.dialog.open(DialogComponent,{
+          data:{message:"Something went wrong. Please Ensure you got the hentai's title right and your connection is properly setup"},
+          backdropClass:"stream-blur",
+        }).beforeClosed().subscribe(()=>{
+          if(this.platform == "win32"){
+          document.body.style.background = "transparent"
+          }
+        })
       })
    
   }
