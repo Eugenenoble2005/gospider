@@ -30,12 +30,12 @@ var module_for_browser_window = os.platform() == "win32" ? 'electron-acrylic-win
       })
       mainWindow.maximize();
       mainWindow.loadURL(
-        // url.format({
-        //   pathname: path.join(__dirname, `/dist/gospider/index.html`),
-        //   protocol: "file:",
-        //   slashes: true
-        // }),
-        "http://localhost:4200"
+        url.format({
+          pathname: path.join(__dirname, `/dist/gospider/index.html`),
+          protocol: "file:",
+          slashes: true
+        }),
+        // "http://localhost:4200"
       ); 
       //open download links externally
       mainWindow.on('closed', function () {
