@@ -34,6 +34,7 @@ export class MainComponent implements OnInit {
   async deployScalper(data:any){
       this.scalping = true
       let self = this
+      data.anime_id = data.anime_id?.split(" ").join("-")
      let anime_id = data.anime_id
      let end_episode = data.end_episode
      let start_episode = data.start_episode
@@ -153,6 +154,7 @@ export class MainComponent implements OnInit {
     $event.target.disabled = true;
     $event.target.innerHTML = "Retrying..."
     let anime_id = (<HTMLInputElement>document.getElementById("anime_id")).value;
+    anime_id = anime_id.split(" ")?.join("-")
      let data = {"url":element.secondary_download,"driver":this.driver,"quality":2}
     
     this.electronService.ipcRenderer.invoke("spider",data).then((result:any)=>{

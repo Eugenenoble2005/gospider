@@ -23,8 +23,10 @@ import { StreamComponent } from './stream/stream.component';
 import { MatAutocompleteModule } from "@angular/material/autocomplete"
 import { ScriptService } from 'ngx-script-loader';
 import appRoutes from './app-routing.module';
+import { MatGridListModule } from "@angular/material/grid-list"
 import { MainComponent } from './main/main.component';
 import { HentaiComponent } from './hentai/hentai.component';
+import { MatChipsModule } from "@angular/material/chips"
 //@ts-ignore
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { HentaiComponent } from './hentai/hentai.component';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatAutocompleteModule,
+    MatChipsModule,
+    MatGridListModule,
     MatFormFieldModule,
     RouterModule.forRoot(appRoutes),
     MatDialogModule,

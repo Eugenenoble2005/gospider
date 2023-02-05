@@ -19,6 +19,8 @@ const {BrowserWindow} = require('electron-acrylic-window')
         webPreferences: {
           nodeIntegration: true,
           contextIsolation:false,
+          //disbaling cors for hanime.
+          webSecurity: false
           //devTools:false,
           
         }
