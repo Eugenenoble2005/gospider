@@ -12,7 +12,7 @@ git clone https://github.com/Eugenenoble2005/gospider.git<br>
 cd gospider<br>
 npm install <br>
 npx patch-package ngx-electron<br>
-npx ng serve
+npx ng build --base-href ./
 </code><br>
 For windows platform, ensure you have windows build tools for node installed. You can install this by running:
 <br><code>npm i windows-build-tools</code>
