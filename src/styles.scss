@@ -84,3 +84,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("./assets/hentai-art.jpg")  !important;
   background-size:cover !important;
 }
+/****STYLES FOR COMPONENTS**/
+.win32{
+  .mat-toolbar{
+    background:transparent !important;
+   display: block !important;
+  }
+  table {
+  width: 100% !important;
+  }
+  #hentai_background{
+  height:auto !important;
+  }
+}

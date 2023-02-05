@@ -22,7 +22,8 @@
 </head>
 <body class="mat-typography">
   <script>
-    
+      var os = require("os");
+      document.body.classList.add(os.platform())
   </script>
   <app-root></app-root>
 </body>

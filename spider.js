@@ -46,6 +46,7 @@ async function main(url,quality,driver){
           let download_body = await response.text()
           const $ = cheerio.load(await download_body)
           if($("a").length == 0){
+            browser.close()
              return {"status":false,"error":"captcha","link":`${link}`}
           }
           let download_link = $("a").map((i,el)=>{
