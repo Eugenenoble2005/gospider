@@ -28,12 +28,14 @@ async function main(url,quality,driver){
     else if(os.platform() == "linux"){
       let app_data = os.homedir()
        chrome_data_folder = app_data+"\\\\"+".config"+"\\\\"+"google-chrome"
+       edge_data_folder = app_data+"\\\\"+".config"+"\\\\"+"google-chrome"
+      edge_path =  "/usr/bin/microsoft-edge-dev"
     }
     //macos
     else if(os.platform() == "darwin"){
       //untested
       let app_data = os.homedir()
-      chrome_data_folder = app_data+"\\\\"+"Library"+"\\\\"+"Application"+"\\\\"+"Support"+"\\\\"+"Google"+"\\\\"+"Chrome"
+      chrome_data_folder = app_data+"\\\\"+"Library"+"\\\\"+"Application Support"+"\\\\"+"Google"+"\\\\"+"Chrome"
       edge_path = "\\Applications\\Microsoft Edge.app\\Contents\\MacOS\\Microsoft Edge"
       edge_data_folder = app_data+"\\\\"+"Library"+"\\\\"+"Application Support"+"\\\\"+"Microsoft"+"\\\\"+"Edge"
 
