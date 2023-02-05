@@ -10,7 +10,7 @@ First clone the repo, install angular dependencies and serve.
 <code><br>
 git clone https://github.com/Eugenenoble2005/gospider.git<br>
 cd gospider<br>
-npm install <br>
+yarn --force <br>
 npx patch-package ngx-electron<br>
 npx ng build --base-href ./
 </code><br>
