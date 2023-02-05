@@ -1,5 +1,8 @@
 const {app,ipcMain,shell,} = require("electron")
-const {BrowserWindow} = require('electron-acrylic-window')
+var os = require("os");
+//import appropriate browserWIndow depending on platform
+var module_for_browser_window = os.platform() == "win32" ? 'electron-acrylic-window' : "electron"
+  const {BrowserWindow } = require(module_for_browser_window)
     const url = require("url");
     const path = require("path");
 

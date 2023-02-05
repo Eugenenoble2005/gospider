@@ -25,6 +25,7 @@ export class MainComponent implements OnInit {
   public driver = "chrome"
   public episodes:any = []
   public animes:Array<any> = []
+  public platform = document.body.classList[1]
   public data_source = new MatTableDataSource(this.episodes)
   @ViewChild(MatTable) public table!: MatTable<any>
   @ViewChild(MatSort) sort!: MatSort;
@@ -52,7 +53,9 @@ export class MainComponent implements OnInit {
           data:{message:"Anime not found, Please use the suggestions provided in the search bar"},
           backdropClass:"stream-blur",
         }).beforeClosed().subscribe(()=>{
-          document.body.style.background = "transparent"
+          if(this.platform == "win32"){
+            document.body.style.background = "transparent"
+          }
         })
       }
       else if(error.status == 429){
@@ -60,7 +63,9 @@ export class MainComponent implements OnInit {
           data:{message:"Slow down cowboy, You've crawled alot in such a short while. Try again in some minutes"},
           backdropClass:"stream-blur",
         }).beforeClosed().subscribe(()=>{
+          if(this.platform == "win32"){
           document.body.style.background = "transparent"
+          }
         })
       }
       else{
@@ -69,7 +74,9 @@ export class MainComponent implements OnInit {
           data:{message:"Something went wrong. Please retry again later"},
           backdropClass:"stream-blur",
         }).beforeClosed().subscribe(()=>{
+          if(this.platform == "win32"){
           document.body.style.background = "transparent"
+          }
         })
       }
       this.scalping = false
@@ -194,7 +201,9 @@ export class MainComponent implements OnInit {
       width:"900px",
       height:"400px"
     }).beforeClosed().subscribe(()=>{
+      if(this.platform == "win32"){
       document.body.style.background = "transparent"
+      }
     })
   }
   searchAnime($event:any){

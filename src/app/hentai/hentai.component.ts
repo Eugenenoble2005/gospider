@@ -11,6 +11,7 @@ import { DialogComponent } from '../dialog/dialog.component';
   styleUrls: ['./hentai.component.scss']
 })
 export class HentaiComponent implements OnInit {
+  public platform = document.body.classList[1]
   hentai_list:Array<any> = []
   hentai: any;
   constructor(public http:HttpClient,public electronService:ElectronService,public dialog:MatDialog) { }
@@ -41,7 +42,9 @@ export class HentaiComponent implements OnInit {
             data:{message:"Something went wrong. Please Ensure you got the hentai's title right and your connection is properly setup"},
             backdropClass:"stream-blur",
           }).beforeClosed().subscribe(()=>{
+            if(this.platform == "win32"){
             document.body.style.background = "transparent"
+            }
           })
           return
         }
@@ -91,7 +94,9 @@ export class HentaiComponent implements OnInit {
       width:"900px",
       height:"400px"
     }).beforeClosed().subscribe(()=>{
+      if(this.platform == "win32"){
       document.body.style.background = "transparent"
+      }
     })
   }
 }

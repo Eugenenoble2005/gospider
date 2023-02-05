@@ -1,7 +1,7 @@
 
 const chromePaths = require('chrome-paths');
 const puppeteer = require('puppeteer-extra')
-
+var os = require("os");
 // add stealth plugin and use defaults (all evasion techniques)
 const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 const {app,ipcMain} = require("electron")
@@ -11,11 +11,30 @@ async function main(url,quality,driver){
   
     console.log("loading...")
     //using user data helps convince google the browser is human operated as opposed to an empty chromium instance.
-    let app_data = process.env.APPDATA.split(`\\`)
-    app_data.pop()
-    let chrome_data_folder = app_data.join(`\\\\`)+"\\\\"+"Local\\\\Google\\\\Chrome\\\\User Data";
-    let edge_data_folder = app_data.join(`\\\\`)+"\\\\"+"Local\\\\Microsoft\\\\Edge\\\\User Data";
-    let edge_path = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+
+    //get chromium browser user data locations for each platform.
+    //windows
+   let chrome_data_folder = ""
+    let edge_path = ""
+    let edge_data_folder = ""
+    if(os.platform() == "win32"){
+      let app_data = process.env.APPDATA.split(`\\`)
+      app_data.pop()
+       chrome_data_folder = app_data.join(`\\\\`)+"\\\\"+"Local\\\\Google\\\\Chrome\\\\User Data";
+       edge_data_folder = app_data.join(`\\\\`)+"\\\\"+"Local\\\\Microsoft\\\\Edge\\\\User Data";
+       edge_path = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+    }
+    //linux
+    else if(os.platform() == "linux"){
+      let app_data = os.homedir()
+       chrome_data_folder = app_data+"\\\\"+".config"+"\\\\"+"google-chrome"
+    }
+    //macos
+    else if(os.platform() == "darwin"){
+      //untested
+      let app_data = os.homedir()
+      chrome_data_folder = app_data+"\\\\"+"Library"+"\\\\"+"Application"+"\\\\"+"Support"+"\\\\"+"Google"+"\\\\"+"Chrome"
+    }
    //C:\\Users\\noble\\AppData\\Local\\Google\\Chrome\\User Data
    let link = url
     const browser = await puppeteer.launch({

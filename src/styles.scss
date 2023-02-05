@@ -85,9 +85,23 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-size:cover !important;
 }
 /****STYLES FOR COMPONENTS**/
+//for windows
 .win32{
   .mat-toolbar{
     background:transparent !important;
+   display: block !important;
+  }
+  table {
+  width: 100% !important;
+  }
+  #hentai_background{
+  height:auto !important;
+  }
+}
+//for linux and macos
+.linux,.darwin{
+  background: #212121;
+  .mat-toolbar{
    display: block !important;
   }
   table {
