@@ -23,7 +23,7 @@ var module_for_browser_window = os.platform() == "win32" ? 'electron-acrylic-win
           nodeIntegration: true,
           contextIsolation:false,
           //disbaling cors for hanime.
-          webSecurity: false
+          webSecurity: false,
           devTools:false,
           
         }
