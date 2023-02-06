@@ -32,6 +32,7 @@
     "ngx-electron": "^2.2.0",
     "ngx-script-loader": "^2.0.0",
     "ngx-scrollbar": "9.0.2",
+    "nopt": "^7.0.0",
     "patch-package": "^6.5.1",
     "puppeteer": "^19.5.0",
     "puppeteer-extra": "^3.3.4",
