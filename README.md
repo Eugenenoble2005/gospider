@@ -24,6 +24,20 @@ npm start
 </li>
 </ul>
 
+<h1>How To Install</h1>
+<h2>Windows</h2>
+<p>Download the setup file from <a href = "https://drive.google.com/file/d/1MHX1J5Sdo7E7ynkRfypQx5aXy1xSSZIg/view?usp=share_link">https://drive.google.com/file/d/1MHX1J5Sdo7E7ynkRfypQx5aXy1xSSZIg/view?usp=share_link</a>. And install. </p>
+<h2> Debian/Ubuntu Linux</h2>
+<p>Download the debian package from <a href = "https://drive.google.com/file/d/1gPcffZ_rq_yc1Y5DKrYo4X_uF2-rsiue/view?usp=share_link">https://drive.google.com/file/d/1gPcffZ_rq_yc1Y5DKrYo4X_uF2-rsiue/view?usp=share_link</a>.
+<br>
+In the directory where the package is downloaded, run:
+<br>
+<code>
+sudo dpkg -i gospider_1.0-1_all.deb
+</code><br>
+When it is done installing, run:
+<code>gospider</code> From any location to start
+</p>
 <h1>
 Usage Instructions
 </h1>
